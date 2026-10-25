@@ -1,0 +1,43 @@
+{
+  "name": "jerp-kit",
+  "version": "0.1.0",
+  "status": "draft",
+  "repository": "https://github.com/jerp-ai/jerp-kit",
+  "connect": {
+    "mcp": "https://getjerp.com/mcp",
+    "rest": "https://getjerp.com/api/v1/",
+    "openapi": "https://getjerp.com/api/v1/openapi.json"
+  },
+  "tools": [
+    "guard",
+    "verdict",
+    "speaker",
+    "support"
+  ],
+  "agents": {
+    "any": [
+      "AGENTS.md",
+      "rules/jerp-rules.md",
+      "skills/jerp/SKILL.md",
+      "mcp/servers.json"
+    ],
+    "claude": [
+      "skills/jerp/SKILL.md",
+      "claude/README.md"
+    ],
+    "cursor": [
+      "cursor/rules/jerp.mdc",
+      "cursor/mcp.json"
+    ],
+    "codex": [
+      "skills/jerp/SKILL.md",
+      "codex/AGENTS.snippet.md",
+      "codex/config.toml.example",
+      "codex/README.md"
+    ],
+    "gpt": [
+      "gpt/INSTRUCTIONS.md",
+      "gpt/README.md"
+    ]
+  }
+}

@@ -1,0 +1,3 @@
+# Example only. Remote MCP keys differ between Codex versions; check the documentation of your version.
+[mcp_servers.jerp]
+url = "https://getjerp.com/mcp"
