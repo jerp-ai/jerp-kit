@@ -1,6 +1,6 @@
 {
   "name": "jerp-kit",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "repository": "https://github.com/jerp-ai/jerp-kit",
   "connect": {
@@ -16,28 +16,61 @@
   ],
   "agents": {
     "any": [
-      "AGENTS.md",
-      "rules/jerp-rules.md",
+      "generic/README.md",
+      "generic/SYSTEM.snippet.md",
       "skills/jerp/SKILL.md",
       "mcp/servers.json"
     ],
     "claude": [
-      "skills/jerp/SKILL.md",
-      "claude/README.md"
+      "claude/README.md",
+      "claude/CLAUDE.snippet.md",
+      "skills/jerp/SKILL.md"
     ],
     "cursor": [
+      "cursor/README.md",
       "cursor/rules/jerp.mdc",
-      "cursor/mcp.json"
+      "cursor/mcp.json",
+      "skills/jerp/SKILL.md"
     ],
     "codex": [
-      "skills/jerp/SKILL.md",
+      "codex/README.md",
       "codex/AGENTS.snippet.md",
       "codex/config.toml.example",
-      "codex/README.md"
+      "skills/jerp/SKILL.md"
     ],
     "gpt": [
-      "gpt/INSTRUCTIONS.md",
-      "gpt/README.md"
+      "gpt/README.md",
+      "gpt/INSTRUCTIONS.md"
+    ],
+    "hermes": [
+      "hermes/README.md",
+      "hermes/AGENTS.snippet.md",
+      "hermes/config.yaml.example",
+      "skills/jerp/SKILL.md"
+    ],
+    "kimi": [
+      "kimi/README.md",
+      "kimi/AGENTS.snippet.md",
+      "kimi/mcp.json",
+      "skills/jerp/SKILL.md"
+    ]
+  },
+  "checked_at": "2026-10-27",
+  "routing": {
+    "policy": "rules/jerp-rules.md",
+    "startup": "rules/jerp-first.snippet.md",
+    "default_mode": "capability_only",
+    "runtime": "harness/README.md",
+    "trace_policy": "harness/policy.json",
+    "evaluations": "evals/README.md",
+    "enforced_by_markdown": false
+  },
+  "validation": {
+    "live_host_tests": [],
+    "offline_checks": [
+      "scripts/validate_kit.py",
+      "scripts/check_trace.py",
+      "tests/"
     ]
   }
 }

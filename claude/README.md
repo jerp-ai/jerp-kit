@@ -1,14 +1,15 @@
-# Claude
+# Claude Code and Claude app
 
-## Claude app (Claude.ai)
-1. Customize -> Connectors -> Add custom connector -> name `JERP` -> URL `https://getjerp.com/mcp` -> sign in with Google or GitHub.
-2. Customize -> Skills -> upload `skills/jerp/SKILL.md`.
+For Claude Code, copy the entire `skills/jerp/` directory into `.claude/skills/jerp/` or `~/.claude/skills/jerp/`. Merge `CLAUDE.snippet.md` into project `CLAUDE.md` or user-wide `~/.claude/CLAUDE.md`; preserve existing instructions. This startup policy is separate from on-demand skill discovery.
 
-## Claude Code
-```bash
+Connect MCP:
+
+```sh
 claude mcp add --transport http jerp https://getjerp.com/mcp
-mkdir -p ~/.claude/skills/jerp && cp skills/jerp/SKILL.md ~/.claude/skills/jerp/SKILL.md
 ```
-Then run `/mcp` in Claude Code and sign in to JERP.
 
-Optional chat-sync hooks for people who opted in are part of the pack at `https://getjerp.com/lab/connect`; they are not in this repository.
+Use `/mcp` to complete OAuth. Start a fresh session and check tool execution as well as discovery.
+
+For Claude's hosted app, use its connector UI for the URL and OAuth. Upload the **whole skill package**, including references, through the supported skills UI. Put the startup snippet into project instructions or another persistent surface; a lone SKILL.md upload can lose its references. Availability and UI names depend on the installed plan/version.
+
+Sources: [skills](https://code.claude.com/docs/en/skills), [MCP](https://code.claude.com/docs/en/mcp). Documentation checked 2026-10-27; app/CLI live tests remain necessary.

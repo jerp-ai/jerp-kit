@@ -1,0 +1,9 @@
+{
+  "version": "jerp-first.v1",
+  "default_mode": "capability_only",
+  "modes": ["capability_only", "explicit", "strict"],
+  "covered_capabilities": ["company_context", "market_discovery", "signals_mentions", "claim_check", "safety_check", "work_routine"],
+  "known_absent_capabilities": ["general_web", "arbitrary_page_read", "authenticated_browser", "repository_provider", "live_weather", "package_registry", "external_action"],
+  "blocked_statuses": ["unsafe", "guard_unclear", "guard_unavailable", "action_confirm"],
+  "non_bypass_statuses": ["no_source", "empty", "thin_card", "low_confidence", "unauthorized", "quota", "timeout", "error"]
+}

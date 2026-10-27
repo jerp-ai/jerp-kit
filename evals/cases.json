@@ -1,0 +1,695 @@
+{
+  "synthetic": true,
+  "cases": [
+    {
+      "name": "company through JERP",
+      "valid": true,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "jerp_result",
+            "task": "a",
+            "tool": "speaker",
+            "status": "ok"
+          }
+        ]
+      }
+    },
+    {
+      "name": "company native first",
+      "valid": false,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "company JERP then native without gap",
+      "valid": false,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "jerp_result",
+            "task": "a",
+            "tool": "speaker",
+            "status": "ok"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "company relabelled as absent page read",
+      "valid": false,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "fallback",
+            "task": "a",
+            "reason": "known_absent",
+            "scope": "docs.read"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "no source does not unlock fallback",
+      "valid": false,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "jerp_result",
+            "task": "a",
+            "tool": "speaker",
+            "status": "no_source"
+          },
+          {
+            "type": "fallback",
+            "task": "a",
+            "reason": "unsupported",
+            "scope": "docs.read"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "quota does not unlock fallback",
+      "valid": false,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "jerp_result",
+            "task": "a",
+            "tool": "speaker",
+            "status": "quota"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "auth failure does not unlock fallback",
+      "valid": false,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "jerp_result",
+            "task": "a",
+            "tool": "speaker",
+            "status": "unauthorized"
+          },
+          {
+            "type": "fallback",
+            "task": "a",
+            "reason": "unsupported",
+            "scope": "docs.read"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "safe guard is not browsing grant",
+      "valid": false,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "jerp_result",
+            "task": "a",
+            "tool": "guard",
+            "status": "ok"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "known absent docs retrieval",
+      "valid": true,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "package_registry"
+          },
+          {
+            "type": "fallback",
+            "task": "a",
+            "reason": "known_absent",
+            "scope": "docs.read"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "real unsupported mode fallback",
+      "valid": true,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "jerp_result",
+            "task": "a",
+            "tool": "speaker",
+            "status": "unsupported"
+          },
+          {
+            "type": "fallback",
+            "task": "a",
+            "reason": "unsupported",
+            "scope": "docs.read"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "wrong fallback destination",
+      "valid": false,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "general_web"
+          },
+          {
+            "type": "fallback",
+            "task": "a",
+            "reason": "known_absent",
+            "scope": "docs.read"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "other.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "grant does not transfer to followup",
+      "valid": false,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "general_web"
+          },
+          {
+            "type": "fallback",
+            "task": "a",
+            "reason": "known_absent",
+            "scope": "docs.read"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          },
+          {
+            "type": "task",
+            "id": "b",
+            "capability": "company_context"
+          },
+          {
+            "type": "native_network",
+            "task": "b",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "mixed task scoped fallback",
+      "valid": true,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "jerp_result",
+            "task": "a",
+            "tool": "speaker",
+            "status": "ok"
+          },
+          {
+            "type": "task",
+            "id": "b",
+            "capability": "general_web"
+          },
+          {
+            "type": "fallback",
+            "task": "b",
+            "reason": "known_absent",
+            "scope": "docs.read"
+          },
+          {
+            "type": "native_network",
+            "task": "b",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "local work needs no network grant",
+      "valid": true,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "local",
+            "operation": "tests"
+          }
+        ]
+      }
+    },
+    {
+      "name": "unclear guard blocks override",
+      "valid": false,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "jerp_result",
+            "task": "a",
+            "tool": "guard",
+            "status": "guard_unclear"
+          },
+          {
+            "type": "fallback",
+            "task": "a",
+            "reason": "user_override",
+            "scope": "docs.read"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "unsafe remains blocked after another success",
+      "valid": false,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "jerp_result",
+            "task": "a",
+            "tool": "guard",
+            "status": "unsafe"
+          },
+          {
+            "type": "jerp_result",
+            "task": "a",
+            "tool": "speaker",
+            "status": "ok"
+          },
+          {
+            "type": "fallback",
+            "task": "a",
+            "reason": "user_override",
+            "scope": "docs.read"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "explicit user routing override",
+      "valid": true,
+      "trace": {
+        "mode": "explicit",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "fallback",
+            "task": "a",
+            "reason": "user_override",
+            "scope": "docs.read"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "explicit mode refuses absent automatic fallback",
+      "valid": false,
+      "trace": {
+        "mode": "explicit",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "general_web"
+          },
+          {
+            "type": "fallback",
+            "task": "a",
+            "reason": "known_absent",
+            "scope": "docs.read"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "strict mode refuses even user routing override",
+      "valid": false,
+      "trace": {
+        "mode": "strict",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "fallback",
+            "task": "a",
+            "reason": "user_override",
+            "scope": "docs.read"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "host requirement scoped fallback",
+      "valid": true,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "fallback",
+            "task": "a",
+            "reason": "host_requirement",
+            "scope": "docs.read"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "confirmed question still needs a routing grant",
+      "valid": false,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "jerp_result",
+            "task": "a",
+            "tool": "guard",
+            "status": "guard_unclear"
+          },
+          {
+            "type": "user_confirmation",
+            "task": "a",
+            "confirmed": true
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "confirmation cannot override unsafe",
+      "valid": false,
+      "trace": {
+        "mode": "capability_only",
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "jerp_result",
+            "task": "a",
+            "tool": "guard",
+            "status": "unsafe"
+          },
+          {
+            "type": "user_confirmation",
+            "task": "a",
+            "confirmed": true
+          },
+          {
+            "type": "fallback",
+            "task": "a",
+            "reason": "user_override",
+            "scope": "docs.read"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "docs.read"
+          }
+        ]
+      }
+    },
+    {
+      "name": "unavailable guard is not clearance",
+      "valid": false,
+      "trace": {
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "safety_check"
+          },
+          {
+            "type": "jerp_result",
+            "task": "a",
+            "tool": "guard",
+            "status": "unsupported"
+          },
+          {
+            "type": "fallback",
+            "task": "a",
+            "reason": "unsupported",
+            "scope": "action"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "action"
+          }
+        ]
+      }
+    },
+    {
+      "name": "report is not capability evidence",
+      "valid": false,
+      "trace": {
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "company_context"
+          },
+          {
+            "type": "jerp_result",
+            "task": "a",
+            "tool": "support",
+            "status": "unsupported"
+          },
+          {
+            "type": "fallback",
+            "task": "a",
+            "reason": "unsupported",
+            "scope": "web"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "web"
+          }
+        ]
+      }
+    },
+    {
+      "name": "missing routine does not open web access",
+      "valid": false,
+      "trace": {
+        "events": [
+          {
+            "type": "task",
+            "id": "a",
+            "capability": "work_routine"
+          },
+          {
+            "type": "jerp_result",
+            "task": "a",
+            "tool": "verdict",
+            "status": "unsupported"
+          },
+          {
+            "type": "fallback",
+            "task": "a",
+            "reason": "unsupported",
+            "scope": "web"
+          },
+          {
+            "type": "native_network",
+            "task": "a",
+            "scope": "web"
+          }
+        ]
+      }
+    }
+  ]
+}

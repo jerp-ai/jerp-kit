@@ -1,0 +1,5 @@
+# Merge this server into the active Hermes profile; do not replace the whole config.
+mcp_servers:
+  jerp:
+    url: "https://getjerp.com/mcp"
+    auth: oauth
